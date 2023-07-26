@@ -1,0 +1,67 @@
+package projet;
+
+public class Compte {
+
+    private float taux;
+    private double solde;
+
+   public Compte(float taux, double solde) {
+        this.taux = taux;
+        this.solde = solde;
+    }
+   
+
+    public Compte(float f, int i, double d, double e) {
+	// TODO Auto-generated constructor stub
+}
+
+
+	// Méthode pour ajouter des intérêts au solde du compte
+    public void ajouterInterets() {
+        double interets = solde * taux / 100;
+        solde += interets;
+    }
+
+    // Méthode pour effectuer le bouclage du compte (calculer les intérêts et les ajouter au solde)
+    public void boucler() {
+        ajouterInterets();
+    }
+
+    public float getTaux() {
+        return taux;
+    }
+
+    public void setTaux(float taux) {
+        this.taux = taux;
+    }
+
+    public double getSolde() {
+        return solde;
+    }
+
+    public void setSolde(double solde) {
+        this.solde = solde;
+    }
+
+    @Override
+    public String toString() {
+        return "Compte [taux=" + taux + ", solde=" + solde + "]";
+    }
+
+    // Méthode pour afficher le solde du compte
+    public void afficherSolde() {
+        System.out.println("Solde du compte : " + solde);
+    }
+
+    public static void main(String[] args) {
+        float tauxInteret = (float) 5.0; // taux d'intérêt en pourcentage
+        double soldeInitial = 1000.0;
+
+        Compte compte = new Compte(tauxInteret, soldeInitial);
+        compte.afficherSolde();
+
+        compte.boucler();
+
+        compte.afficherSolde();
+    }
+}
