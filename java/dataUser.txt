@@ -1,0 +1,54 @@
+package fr.doranco.projet_poo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserData {
+	
+    private static List<User> users = new ArrayList<>();
+
+    public static void addUsers(User user) {
+        users.add(user);
+    }
+
+    public static void removeUsers(User user) {
+        users.remove(user);
+    }
+
+    public static User getUserByEmail(String email) {
+        for (User user : users) {
+            if (user.getEmail().equals(email)) {
+                return user;
+            }
+        }
+        return null; // Return null if no user with the given email is found
+    }
+    
+    
+    public static List<User> findUsersOfVille(String ville) {
+        List<User> usersInVille = new ArrayList<>();
+        for (User user : users) {
+            for (Adresse address : user.getAdresses()) {
+                if (address.getVille().equalsIgnoreCase(ville)) {
+                    usersInVille.add(user);
+                    break; // Once found in the ville, move to the next user
+                }
+            }
+        }
+        return usersInVille;
+    }
+    
+    public static List<String> findUserNameOfVille(String ville) {
+        List<String> userNamesInVille = new ArrayList<>();
+        for (User user : users) {
+            for (Adresse address : user.getAdresses()) {
+                if (address.getVille().equalsIgnoreCase(ville)) {
+                    userNamesInVille.add(user.getPrenom() + " " + user.getNom());
+                    break; // Once found in the ville, move to the next user
+                }
+            }
+        }
+        return userNamesInVille;
+    }
+    
+}

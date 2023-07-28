@@ -1,0 +1,56 @@
+package fr.doranco.projet_poo;
+
+import java.util.List;
+
+public class Main {
+
+    public static void main(String[] args) {
+    	
+    	// UserData userData = new UserData();
+        // Create addresses for users
+        Adresse adresse1 = new Adresse(1, "rue1", "ville1", "12345");
+        Adresse adresse2 = new Adresse(2, "rue2", "ville2", "67890");
+        Adresse adresse3 = new Adresse(3, "rue3", "ville3", "11111");
+
+        //List<Adresse> addresses = new ArrayList<>();
+       // addresses.add(adresse1);
+        // Add more addresses as needed
+       // User user1 = new User("naima", "chabani", "naima@example.com", "azerty", addresses);
+
+        
+        // Create users with their addresses
+        User user1 = new User("tati", "tato", "user1@example.com", "azerty", List.of(adresse1));
+        User user2 = new User("tito", "toto", "user2@example.com", "azerty", List.of(adresse2));
+        User user3 = new User("tata", "toto", "user3@example.com", "123456", List.of(adresse3));
+
+        // Add users to the UserData
+        UserData.addUsers(user1);
+        UserData.addUsers(user2);
+        UserData.addUsers(user3);
+
+     // Get a user by email
+        String emailToSearch = "user2@example.com";
+        User foundUser = UserData.getUserByEmail(emailToSearch);
+        if (foundUser != null) {
+            System.out.println("Utilisateur trouve: " + foundUser.getPrenom() + " " + foundUser.getNom());
+        } else {
+            System.out.println("User with email " + emailToSearch + " not found.");
+        }
+
+        // Remove a user
+        UserData.removeUsers(user2);
+       // Find users of a specific city
+    String cityToSearch = "City 2";
+    List<User> usersInCity = UserData.findUsersOfVille(cityToSearch);
+    for (User user : usersInCity) {
+        System.out.println("User found in " + cityToSearch + ": " + user.getPrenom() + " " + user.getNom());
+    }
+
+    
+    // Find user names of a specific city
+    List<String> userNamesInCity = UserData.findUserNameOfVille(cityToSearch);
+    for (String userName : userNamesInCity) {
+        System.out.println("User name found in " + cityToSearch + ": " + userName);
+    }
+}
+}
